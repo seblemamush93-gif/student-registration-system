@@ -1,0 +1,27 @@
+-- Run this SQL (via phpMyAdmin or mysql) to create the database and tables
+CREATE DATABASE IF NOT EXISTS mau_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE mau_db;
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  name VARCHAR(255) DEFAULT NULL,
+  email VARCHAR(255) DEFAULT NULL,
+  phone VARCHAR(50) DEFAULT NULL,
+  type VARCHAR(50) DEFAULT 'student',
+  meta TEXT DEFAULT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS announcements (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title TEXT NOT NULL,
+  content TEXT NOT NULL,
+  author VARCHAR(255) DEFAULT NULL,
+  type VARCHAR(100) DEFAULT 'general',
+  priority VARCHAR(50) DEFAULT 'normal',
+  audience VARCHAR(100) DEFAULT 'all',
+  expiry DATE DEFAULT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
